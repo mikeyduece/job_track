@@ -5,5 +5,6 @@ class User < ApplicationRecord
   has_many :contacts, through: :applications
 
   validates :first_name, :last_name, :email, presence: true
+  validates :email, uniqueness: true
 
 end

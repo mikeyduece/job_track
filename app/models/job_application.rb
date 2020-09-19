@@ -6,4 +6,7 @@ class JobApplication < ApplicationRecord
   has_many :contacts, dependent: :destroy
   has_many :job_application_tags, dependent: :destroy, inverse_of: :job_application
   has_many :tags, through: :job_application_tags
+
+  validates :company, :user, presence: true
+
 end

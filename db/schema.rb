@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2020_09_18_223712) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "primary", default: false
+    t.index ["email"], name: "index_contacts_on_email"
     t.index ["job_application_id"], name: "index_contacts_on_job_application_id"
   end
 
@@ -52,6 +53,7 @@ ActiveRecord::Schema.define(version: 2020_09_18_223712) do
   create_table "job_applications", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "user_id", null: false
     t.string "company", null: false
+    t.string "resume_url", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_job_applications_on_user_id"

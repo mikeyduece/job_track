@@ -19,6 +19,7 @@ gem 'rack-cors'
 gem 'cancancan', '~> 2.0'
 gem 'jwt'
 gem 'fast_jsonapi'
+gem "aws-sdk", "~> 3.0"
 
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

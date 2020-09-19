@@ -1,20 +1,24 @@
 module Secured
-  before_action :authenticate_request!
+  extend ActiveSupport::Concern
+
+  included do
+    before_action :authenticate_request!
+  end
 
   private
 
   def authenticate_request!
-    verify_token
-  end
-
-  def verify_token
-    JsonWebToken.verify(http_token)
+    auth_token
+  rescue JWT::VerificationError, JWT::DecodeError
+    render json: {errors: ['Not Authenticated']}, status: :unauthorized
   end
 
   def http_token
-    headers = request.headers
+    request.headers['Authorization'].split(' ').last if request.headers['Authorization'].present?
+  end
 
-    headers['Authorization'].split(' ').last if headers['Authorization'].present?
+  def auth_token
+    JsonWebToken.verify(http_token)
   end
 
 end
