@@ -58,6 +58,7 @@
     <orderEntry type="library" scope="PROVIDED" name="erubi (v1.9.0, asdf: 2.7.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="factory_bot (v4.11.1, asdf: 2.7.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="factory_bot_rails (v4.11.1, asdf: 2.7.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="faker (v2.14.0, asdf: 2.7.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="fast_jsonapi (v1.5, asdf: 2.7.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ffi (v1.13.1, asdf: 2.7.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="globalid (v0.4.2, asdf: 2.7.1) [gem]" level="application" />

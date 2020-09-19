@@ -37,6 +37,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails'
   gem 'pry-rails'
+
   gem 'capybara'
   gem 'launchy'
   gem 'shoulda-matchers'
@@ -44,6 +45,7 @@ group :development, :test do
   gem 'vcr'
   gem 'webmock'
   gem 'database_cleaner'
+  gem 'faker'
 end
 
 group :development do
