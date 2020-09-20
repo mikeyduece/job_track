@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_one_attached :resume
 
   has_many :applications, class_name: 'JobApplication', inverse_of: :user
   has_many :tags, through: :applications

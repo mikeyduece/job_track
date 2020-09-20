@@ -11,4 +11,11 @@ class Contact < ApplicationRecord
     primary
   end
 
+  def primary!
+    return true if primary
+    where(primary: true).update_all(primary: false)
+    
+    update!(primary: true)
+  end
+
 end
