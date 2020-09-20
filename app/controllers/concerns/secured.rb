@@ -8,7 +8,9 @@ module Secured
   private
 
   def authenticate_request!
-    auth_token
+    token = auth_token
+    email = get_email(token)
+    RequestStore.store[:current_user] ||= User.find_by(email: email)
   rescue JWT::VerificationError, JWT::DecodeError
     render json: {errors: ['Not Authenticated']}, status: :unauthorized
   end
@@ -19,6 +21,10 @@ module Secured
 
   def auth_token
     JsonWebToken.verify(http_token)
+  end
+
+  def get_email(token)
+    JsonWebToken.get_email_claim(token)
   end
 
 end

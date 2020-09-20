@@ -20,7 +20,7 @@ gem 'cancancan', '~> 2.0'
 gem 'jwt'
 gem 'fast_jsonapi'
 gem "aws-sdk", "~> 3.0"
-
+gem 'request_store'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

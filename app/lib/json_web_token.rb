@@ -16,6 +16,10 @@ class JsonWebToken
     end
   end
 
+  def self.get_email_claim(token)
+    JWT.decode(token, nil, false).first[0]
+  end
+
   def self.jwks_hash
     jwks_raw = Net::HTTP.get URI("#{Rails.application.credentials.auth0[:domain]}.well-known/jwks.json")
     jwks_keys = Array(JSON.parse(jwks_raw)['keys'])

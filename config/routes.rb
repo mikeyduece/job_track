@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
       end
 
+      resource :profile, module: :profile, controller: :profile, only: :show
       resource :users, module: :users
       resources :job_applications, module: :job_applications
     end
