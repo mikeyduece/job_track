@@ -8,16 +8,16 @@ class JsonWebToken
     JWT.decode(token, nil,
                true, # Verify the signature of this token
                algorithm: 'RS256',
-               iss: auth0_credentials[:domain],
+               iss: Rails.application.credentials[:domain],
                verify_iss: true,
-               aud: auth0_credentials[:api_identifier],
+               aud: Rails.application.credentials[:audience],
                verify_aud: true) do |header|
       jwks_hash[header['kid']]
     end
   end
 
-  def self.get_email_claim(token)
-    JWT.decode(token, nil, false).first[0]
+  def self.get_claim(token, claim_name)
+    JWT.decode(token, nil, false).first[0][claim_name]
   end
 
   def self.jwks_hash
