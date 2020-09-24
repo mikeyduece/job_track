@@ -1,8 +1,10 @@
 class ApplicationController < ActionController::API
+  include DrySerialization::FastJsonapi
+  include DrySerialization::Concerns::SerializationHelper
   include Secured
 
   rescue_from JWT::VerificationError, JWT::DecodeError do |exception|
-    render json: { errors: ["Not Authenticated - message #{exception}"] }, status: :unauthorized
+    error_response(["Not Authenticated - message #{exception}"], :unauthorized)
   end
 
   def current_user

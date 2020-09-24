@@ -18,6 +18,7 @@ gem 'sidekiq'
 gem 'rack-cors'
 gem 'cancancan', '~> 2.0'
 gem 'jwt'
+gem 'dry_serialization'
 gem 'fast_jsonapi'
 gem "aws-sdk", "~> 3.0"
 gem 'request_store'
