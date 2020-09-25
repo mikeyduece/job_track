@@ -15,7 +15,7 @@ describe Api::V1::Profile::ProfileController, type: :request do
 
     it 'should have correct serialization return' do
       res = json_response
-      require 'pry'; binding.pry
+      
       expect(res.dig(:data, :id)).to eq(user.id)
       expect(res.dig(:data, :type)).to eq('user')
       expect(res.dig(:data, :attributes)).to include(attributes)

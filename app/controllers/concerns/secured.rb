@@ -9,7 +9,7 @@ module Secured
 
   def authenticate_request!
     token = auth_token
-    email = get_email(token)
+    email = get_claim(:email)
     RequestStore.store[:current_user] ||= User.find_by(email: email)
     token
   end
@@ -22,8 +22,8 @@ module Secured
     JsonWebToken.verify(http_token)
   end
 
-  def get_email(token)
-    JsonWebToken.get_claim(token, 'email')
+  def get_email(claim)
+    JsonWebToken.get_claim(auth_token, claim)
   end
 
 end
