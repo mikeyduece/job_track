@@ -1,9 +1,12 @@
 require 'rails_helper'
 
 describe Api::V1::Profile::ProfileController, type: :request do
+  def lower_camel(key)
+    key.camelize(:lower)
+  end
   let(:headers) { {'Content-Type': 'application/vnd.api+json', 'Accept': 'application/vnd.api+json', 'Authorization': 'Bearer token'} }
   let(:user) { create(:user_with_apps) }
-  let(:attributes) { user.attributes.to_h.symbolize_keys!.except(:id, :auth0_id, :created_at, :updated_at) }
+  let(:attributes) { user.attributes.to_h.transform_keys!(&method(:lower_camel)).symbolize_keys!.except(:id, :auth0Id, :createdAt, :updatedAt) }
 
   context 'GET #show' do
     before do
