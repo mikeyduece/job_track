@@ -4,7 +4,7 @@ describe Api::V1::Profile::ProfileController, type: :request do
   def lower_camel(key)
     key.camelize(:lower)
   end
-  let(:headers) { {'Content-Type': 'application/vnd.api+json', 'Accept': 'application/vnd.api+json', 'Authorization': 'Bearer token'} }
+  include_context 'shared headers'
   let(:user) { create(:user_with_apps) }
   let(:attributes) { user.attributes.to_h.transform_keys!(&method(:lower_camel)).symbolize_keys!.except(:id, :auth0Id, :createdAt, :updatedAt) }
 

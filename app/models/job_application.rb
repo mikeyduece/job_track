@@ -3,8 +3,7 @@
 # Table name: job_applications
 #
 #  id         :uuid             not null, primary key
-#  company    :string           not null
-#  job_type   :integer          default("front"), not null
+#  job_type   :integer          default("frontend"), not null
 #  position   :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
@@ -12,13 +11,13 @@
 #
 # Indexes
 #
-#  index_job_applications_on_company   (company)
 #  index_job_applications_on_job_type  (job_type)
 #  index_job_applications_on_position  (position)
 #  index_job_applications_on_user_id   (user_id)
 #
 class JobApplication < ApplicationRecord
   has_one :primary_contact, -> { where(primary: true) }, class_name: 'Contact'
+  has_one :company
 
   belongs_to :user, inverse_of: :applications
 

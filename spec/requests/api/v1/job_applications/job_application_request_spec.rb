@@ -1,13 +1,13 @@
 require 'rails_helper'
 
 describe Api::V1::JobApplications::JobApplicationsController, type: :request do
-  let(:headers) { { 'Accept': 'application/vnd.api+json' } }
+  include_context 'shared headers'
+  
   let(:user) { create(:user) }
   let(:params) {
     { data: {
-      type: 'job_application',
+      type: 'application',
       attributes: {
-        company: Faker::Company.name,
         position: 'Super Cool Position',
         job_type: :backend,
       },
@@ -21,6 +21,14 @@ describe Api::V1::JobApplications::JobApplicationsController, type: :request do
               email: Faker::Internet.unique.email,
               title: 'CTO',
               primary: true,
+            }
+          }
+        },
+        company: {
+          data: {
+            type: 'company',
+            attributes: {
+              name: Faker::Company.name,
             }
           }
         }
@@ -50,6 +58,10 @@ describe Api::V1::JobApplications::JobApplicationsController, type: :request do
       expect(primary_contact).not_to be_nil
       expect(job_app.contacts).not_to be_empty
       expect(primary_contact.email).to eq(params.dig(:data, :relationships, :contacts, :data, :attributes, :email))
+    end
+
+    it 'should have a company' do
+      expect(job_app.company_name).to eq(params.dig(:data, :relationships, :company, :name))
     end
   end
 end
